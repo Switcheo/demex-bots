@@ -1,6 +1,6 @@
 # DEMEX Bots
 
-> The code found in this repository is only mean for educational purposes only.
+> The code found in this repository is meant for educational purposes only.
 
 Built on [tradehub-api-js](https://github.com/Switcheo/tradehub-api-js) as Proof of Concept.
 
