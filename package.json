@@ -1,0 +1,15 @@
+{
+  "name": "demex-bots",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "upgrade-sdk": "yarn upgrade git+ssh://git@github.com/Switcheo/tradehub-api-js"
+  },
+  "dependencies": {
+    "bignumber.js": "^8.1.1",
+    "dotenv": "^8.0.0",
+    "js-yaml": "^3.13.1",
+    "tradehub-api-js": "git+ssh://git@github.com/Switcheo/tradehub-api-js"
+  }
+}

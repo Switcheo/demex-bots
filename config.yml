@@ -1,0 +1,16 @@
+network: 'LOCALHOST'
+loop_frequency: 4000
+
+bots:
+  - id: btc_z29_simple_maker
+    bot: simple_maker
+    env_mnemonics: SIMPLE_MAKER
+    market: btc_z29
+    max_size: 100
+    spread: 0.01
+    layers: 5
+    layer_size: 1
+  - id: btc_z29_price_keeper
+    bot: price_keeper
+    env_mnemonics: PRICE_KEEPER
+    market: btc_z29
