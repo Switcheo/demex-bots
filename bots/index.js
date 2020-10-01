@@ -43,6 +43,7 @@ class BaseBot {
   }
   // calculateSpread(orderbook)
   getPriceFromBookWithQuantity(book, quantity) {
+    let countedQuantity = new BigNumber(0)
     for (let i = 0; i < book.length; i++) {
       const quoteQty = new BigNumber(book[i].quantity)
       if ((quoteQty.plus(countedQuantity)).gte(new BigNumber(quantity))) {
@@ -55,9 +56,9 @@ class BaseBot {
 
   getBookPrice(orderbook, quantity, side) {
     if (side === 'buy') {
-      return getPriceFromBookWithQuantity(orderbook.asks, quantity)
+      return this.getPriceFromBookWithQuantity(orderbook.asks, quantity)
     }
-    return getPriceFromBookWithQuantity(orderbook.bids, quantity)
+    return this.getPriceFromBookWithQuantity(orderbook.bids, quantity)
   }
 
   async getSortedOpenOrders() {
