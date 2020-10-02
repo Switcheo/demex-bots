@@ -11,15 +11,16 @@ class SimpleMaker extends BaseBot {
     this.max_size = config.max_size
     this.layers = config.layers
     this.layer_size = new BigNumber(config.layer_size)
+    this.config = config
   }
 
-  randomPriceSpread(markPrice) {
+  randomPriceSpread(indexPrice) {
     // 0.3% to 2%
-    return new BigNumber(this.random(0.003, 0.02, 0.0001)).times(markPrice)
+    return new BigNumber(this.random(this.config.spread / 3, this.config.spread * 2, 0.0001)).times(indexPrice)
   }
 
-  async run(markPrice) {
-    if (markPrice.isNaN() || markPrice.isZero()) {
+  async run(indexPrice) {
+    if (indexPrice.isNaN() || indexPrice.isZero()) {
       console.log(`mark price for ${this.market} is undefined or 0`)
       return 
     }
@@ -57,18 +58,18 @@ class SimpleMaker extends BaseBot {
     }
 
     const orderbook = await this.rest.getOrderBook({ market: this.market })
-    const spread = this.getOrderbookSpread(orderbook, markPrice)
+    const spread = this.getOrderbookSpread(orderbook, indexPrice)
 
     const creates = []
     if (openSells.length < this.layers || openBuys.length < this.layers || spread.gt(this.spread)) {
       creates.push(this.constructLimitOrder({
         side: 'sell',
-        price: markPrice.plus(this.randomPriceSpread(markPrice)),
+        price: indexPrice.plus(this.randomPriceSpread(indexPrice)),
         quantity: this.random(this.layer_size.times(0.8), this.layer_size.times(1.2), this.marketParams.lotSize)
       }))
       creates.push(this.constructLimitOrder({
         side: 'buy',
-        price: markPrice.minus(this.randomPriceSpread(markPrice)),
+        price: indexPrice.minus(this.randomPriceSpread(indexPrice)),
         quantity: this.random(this.layer_size.times(0.8), this.layer_size.times(1.2), this.marketParams.lotSize)
       }))
     }

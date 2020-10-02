@@ -34,10 +34,10 @@ class BaseBot {
     }
   }
 
-  getOrderbookSpread(orderbook, markPrice) {
+  getOrderbookSpread(orderbook, indexPrice) {
     if (orderbook.bids.length > 0 && orderbook.asks.length > 0) {
       const spreadAmount = new BigNumber(orderbook.asks[0].price).minus(new BigNumber(orderbook.bids[0].price))
-      return spreadAmount.div(markPrice)
+      return spreadAmount.div(indexPrice)
     }
     return new BigNumber(1)
   }

@@ -2335,7 +2335,7 @@ tough-cookie@~2.5.0:
 
 "tradehub-api-js@git+ssh://git@github.com/Switcheo/tradehub-api-js":
   version "1.0.0"
-  resolved "git+ssh://git@github.com/Switcheo/tradehub-api-js#2606e579fdcfad95e2edba026878da5aa23fda6d"
+  resolved "git+ssh://git@github.com/Switcheo/tradehub-api-js#f47c9ed59e1e7640e116bec1c986ad8ea57ead5a"
   dependencies:
     "@cityofzion/neon-js" "^4.8.0"
     "@lunie/cosmos-ledger" "^0.1.8"

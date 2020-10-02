@@ -42,7 +42,7 @@ async function run() {
 
     for (let i = 0; i <bots.length; i++) {
       const bot = bots[i]
-      bot.run(new BigNumber(pricesMap[bot.market].markPrice))
+      bot.run(new BigNumber(pricesMap[bot.market].indexPrice))
     }
     const end = process.hrtime(start)[1] / 1000000
     console.info(`\n== loop completed in ${end}ms ==`)

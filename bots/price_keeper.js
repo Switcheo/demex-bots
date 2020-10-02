@@ -9,8 +9,8 @@ class PriceKeeper extends BaseBot {
     super(marketParams, config.market, wallet, network, config.id)
   }
 
-  async run(markPrice) {
-    if (markPrice.isNaN() || markPrice.isZero()) {
+  async run(indexPrice) {
+    if (indexPrice.isNaN() || indexPrice.isZero()) {
       console.log(`mark price for ${this.market} is undefined or 0`)
       return 
     }
@@ -34,7 +34,7 @@ class PriceKeeper extends BaseBot {
     const creates = []
     const orderbook = await this.rest.getOrderBook({ market: this.market })
     if (orderbook.bids.length > 0) {
-      if (new BigNumber(orderbook.bids[0].price).gt(markPrice)) {
+      if (new BigNumber(orderbook.bids[0].price).gt(indexPrice)) {
         creates.push(this.constructMarketOrder({
           side: 'sell',
           quantity: orderbook.bids[0].quantity,
@@ -42,7 +42,7 @@ class PriceKeeper extends BaseBot {
       }
     }
     if (orderbook.asks.length > 0) {
-      if (new BigNumber(orderbook.asks[0].price).lt(markPrice)) {
+      if (new BigNumber(orderbook.asks[0].price).lt(indexPrice)) {
           creates.push(this.constructMarketOrder({
             side: 'buy',
             quantity: orderbook.asks[0].quantity,

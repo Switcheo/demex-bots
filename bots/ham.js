@@ -76,8 +76,8 @@ class Ham extends BaseBot {
     return creates
   }
 
-  async run(markPrice) {
-    if (markPrice.isNaN() || markPrice.isZero()) {
+  async run(indexPrice) {
+    if (indexPrice.isNaN() || indexPrice.isZero()) {
       console.log(`mark price for ${this.market} is undefined or 0`)
       return 
     }
@@ -93,6 +93,7 @@ class Ham extends BaseBot {
         console.log(`${this.id} ham create success:`, createResults.logs[0].log)
       } catch (e) {
         console.log(`${this.id} ham create failed`, createResults)
+        // console.log(creates)
       }
     }
 
@@ -127,7 +128,7 @@ class Ham extends BaseBot {
     // const creates = []
     // const orderbook = await this.rest.getOrderBook({ market: this.market })
     // if (orderbook.bids.length > 0) {
-    //   if (new BigNumber(orderbook.bids[0].price).gt(markPrice)) {
+    //   if (new BigNumber(orderbook.bids[0].price).gt(indexPrice)) {
     //     creates.push(this.constructMarketOrder({
     //       side: 'sell',
     //       quantity: orderbook.bids[0].quantity,
@@ -135,7 +136,7 @@ class Ham extends BaseBot {
     //   }
     // }
     // if (orderbook.asks.length > 0) {
-    //   if (new BigNumber(orderbook.asks[0].price).lt(markPrice)) {
+    //   if (new BigNumber(orderbook.asks[0].price).lt(indexPrice)) {
     //       creates.push(this.constructMarketOrder({
     //         side: 'buy',
     //         quantity: orderbook.asks[0].quantity,
