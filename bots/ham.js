@@ -10,6 +10,7 @@ class Ham extends BaseBot {
     this.probabilities = config.probabilities
     this.minQuantity = new BigNumber(config.min_quantity)
     this.maxQuantity = new BigNumber(config.max_quantity)
+    this.config = config
   }
 
   rollBNDice() {
@@ -99,7 +100,7 @@ class Ham extends BaseBot {
 
     if (this.rollBNDice().lt(new BigNumber(this.probabilities.leverage))) {
       // change leverage
-      const newLeverage = this.random(config.min_leverage, config.max_leverage, 0.1)
+      const newLeverage = this.random(this.config.min_leverage, this.config.max_leverage, 0.1)
       const leverageResults = await this.rest.setLeverage({ market: this.market, leverage: newLeverage.toFixed(1) })
       try {
         console.log(`${this.id} ham leverage success:`, leverageResults.logs[0].log)
