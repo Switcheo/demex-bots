@@ -74,6 +74,7 @@ class SimpleMaker extends BaseBot {
       }))
     }
     if (creates.length > 0) {
+      console.log('creates', creates)
       const createResults = await this.rest.createOrders(creates)
       try {
         console.log(`${this.id} simple_maker create success:`, createResults.logs[0].log)

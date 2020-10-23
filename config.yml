@@ -8,30 +8,30 @@ bots:
     market: btc_z29
     max_size: 100
     spread: 0.005
-    layers: 5
+    layers: 10
     layer_size: 1
   - id: btc_z29_price_keeper
     bot: price_keeper
     env_mnemonics: PRICE_KEEPER
     market: btc_z29
-  - id: btc_z29_simple_maker2
-    bot: simple_maker
-    env_mnemonics: MAKER_2
-    market: btc_z29
-    max_size: 100
-    spread: 0.007
-    layers: 4
-    layer_size: 2
-  - id: btc_z29_hammer
-    bot: ham
-    env_mnemonics: HAM
-    market: btc_z29
-    max_quantity: 2
-    min_quantity: 0.1
-    max_leverage: 100
-    min_leverage: 20
-    probabilities: # not exact probabilities as events are dependent on each other
-      leverage: 0.03
-      flip: 0.05
-      close: 0.08
-      increase: 0.75
+  # - id: btc_z29_simple_maker2
+  #   bot: simple_maker
+  #   env_mnemonics: MAKER_2
+  #   market: btc_z29
+  #   max_size: 100
+  #   spread: 0.007
+  #   layers: 4
+  #   layer_size: 2
+  # - id: btc_z29_hammer
+  #   bot: ham
+  #   env_mnemonics: HAM
+  #   market: btc_z29
+  #   max_quantity: 2
+  #   min_quantity: 0.1
+  #   max_leverage: 100
+  #   min_leverage: 20
+  #   probabilities: # not exact probabilities as events are dependent on each other
+  #     leverage: 0.03
+  #     flip: 0.05
+  #     close: 0.08
+  #     increase: 0.75

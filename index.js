@@ -39,6 +39,7 @@ async function run() {
     prices.forEach(p => {
       pricesMap[p.market] = p
     })
+    // console.log('pricesMap', pricesMap)
 
     for (let i = 0; i <bots.length; i++) {
       const bot = bots[i]
